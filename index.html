@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@400;500;700&family=Bodoni+Moda:ital,opsz,wght@1,6..96,500;1,6..96,600&display=swap">
   <style>
-    /* Mobile-first, quiet and soft editorial aesthetic */
+    /* Mobile-first, quiet and soft editorial aesthetic (Light Mode Only) */
     :root {
+      color-scheme: light;
       --bg: #FFF4F6;
       --surface: #FFE3EA;
       --petal: #F9C5D3;
@@ -23,16 +24,6 @@
       --font-display: 'Aref Ruqaa', 'Amiri', serif;
       --font-body: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
       --font-latin: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg: #2B0E1C; --surface: #3C1628; --petal: #5A2040; --rose: #F08AAC; --deep: #FFB3CB; --on-deep: #3A0F25;
-        --ink: #FFE9EE; --muted: #E3B0C3; --line: rgba(255, 179, 203, .25); --card: #351324; color-scheme: dark;
-      }
-    }
-    :root[data-theme="dark"] {
-      --bg: #2B0E1C; --surface: #3C1628; --petal: #5A2040; --rose: #F08AAC; --deep: #FFB3CB; --on-deep: #3A0F25;
-      --ink: #FFE9EE; --muted: #E3B0C3; --line: rgba(255, 179, 203, .25); --card: #351324; color-scheme: dark;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -103,7 +94,9 @@
     .btn:hover { background: var(--rose); border-color: var(--rose); color: var(--ink); }
 
     /* =========================================================
-       TOP NAVBAR: High-contrast, crystal-clear luxury aesthetic
+       TOP NAVBAR:
+       - Logo on the LEFT side (direction: ltr)
+       - Logo color is DARK PINK (#A82D5A), not black
        ========================================================= */
     .top {
       position: sticky;
@@ -115,20 +108,20 @@
       padding-block: 13px;
       border-bottom: 1.5px solid rgba(75, 18, 48, 0.12);
       box-shadow: 0 2px 14px rgba(75, 18, 48, 0.06);
-      transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
     }
     .top .wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
+      direction: ltr; /* English logo on left side */
     }
-    .mark {
+    .top .mark {
       font-family: var(--font-latin);
       font-style: italic;
       font-size: 2rem;
       font-weight: 700;
-      color: #3B0A21;
+      color: var(--deep); /* dark pink, not black */
       direction: ltr;
       letter-spacing: -0.01em;
       text-decoration: none;
@@ -149,6 +142,7 @@
       box-shadow: 0 3px 12px rgba(122, 23, 67, 0.24);
       transition: all 0.2s ease;
       text-decoration: none;
+      direction: rtl;
     }
     .top .top-cta:hover {
       background: #560B2C;
@@ -165,53 +159,8 @@
       stroke-width: 2;
     }
 
-    /* Dark Mode High Contrast for Nav */
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) .top {
-        background: #1F0715;
-        border-bottom: 1.5px solid rgba(255, 179, 203, 0.25);
-        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
-      }
-      :root:not([data-theme="light"]) .top .mark {
-        color: #FFE6EE;
-      }
-      :root:not([data-theme="light"]) .top .top-cta {
-        background: #FFB3CB;
-        color: #2E071B !important;
-        border-color: #FFB3CB;
-        box-shadow: 0 3px 12px rgba(255, 179, 203, 0.25);
-      }
-      :root:not([data-theme="light"]) .top .top-cta:hover {
-        background: #FFFFFF;
-        border-color: #FFFFFF;
-        color: #2E071B !important;
-      }
-    }
-    :root[data-theme="dark"] .top {
-      background: #1F0715;
-      border-bottom: 1.5px solid rgba(255, 179, 203, 0.25);
-      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
-    }
-    :root[data-theme="dark"] .top .mark {
-      color: #FFE6EE;
-    }
-    :root[data-theme="dark"] .top .top-cta {
-      background: #FFB3CB;
-      color: #2E071B !important;
-      border-color: #FFB3CB;
-      box-shadow: 0 3px 12px rgba(255, 179, 203, 0.25);
-    }
-    :root[data-theme="dark"] .top .top-cta:hover {
-      background: #FFFFFF;
-      border-color: #FFFFFF;
-      color: #2E071B !important;
-    }
-
     /* =========================================================
-       1. HERO:
-       - Image is the background taking the whole hero section
-       - Brand name on the image top middle
-       - Clean, unobstructed luxury look
+       1. HERO
        ========================================================= */
     .hero {
       position: relative;
@@ -265,7 +214,7 @@
     }
 
     /* =========================================================
-       BRAND SLOGAN: Elegant, tall section with only one line
+       BRAND SLOGAN
        ========================================================= */
     .brand-slogan-section {
       text-align: center;
@@ -302,109 +251,236 @@
     }
 
     /* =========================================================
-       2. COMPARISON TABLE:
-       - Designed to seamlessly fit the mobile breakpoint without cutoffs
+       SWAPPED: "OUR ESSENTIALS" (Swapped with "Why Belléna")
        ========================================================= */
-    .table-wrap {
-      border-radius: 22px;
+    .picons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 22px 14px;
+      margin-bottom: clamp(32px, 5vw, 54px);
+    }
+    .pi {
+      width: calc(33.333% - 10px);
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+    @media (min-width: 680px) {
+      .pi { width: calc(20% - 15px); min-width: 96px; }
+    }
+    .pi .disc {
+      width: clamp(70px, 12vw, 98px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--surface);
       border: 1.5px solid var(--line);
-      background: var(--card);
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      box-shadow: 0 4px 20px rgba(75, 18, 48, 0.05);
+      display: grid;
+      place-items: center;
+      transition: transform 0.25s, background 0.25s;
     }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      table-layout: fixed;
-      text-align: start;
-    }
-    th, td {
-      padding: clamp(10px, 2.4vw, 16px) clamp(8px, 2vw, 18px);
-      text-align: start;
-      border-bottom: 1px solid var(--line);
-      vertical-align: middle;
-      word-break: normal;
-    }
-    tr:last-child td, tr:last-child th { border-bottom: 0; }
-    thead th {
-      font-family: var(--font-display);
-      font-size: clamp(1.05rem, 2.8vw, 1.3rem);
-      color: var(--muted);
-      font-weight: 600;
-    }
-    thead th.col-feature {
-      width: 40%;
-    }
-    thead th.us {
-      background: var(--deep);
-      color: var(--on-deep);
-      font-family: var(--font-latin);
-      font-style: italic;
-      font-size: clamp(1.2rem, 3.5vw, 1.55rem);
-      direction: ltr;
-      text-align: center;
-      width: 34%;
-    }
-    thead th.col-them {
-      text-align: center;
-      width: 26%;
-      color: var(--muted);
-    }
-    td.us {
+    .pi:hover .disc {
+      transform: translateY(-4px);
       background: var(--petal);
-      text-align: center;
-      font-weight: 700;
-      color: var(--ink);
-      font-size: clamp(0.85rem, 2.2vw, 1rem);
     }
-    td.them {
-      color: var(--muted);
-      text-align: center;
-      font-size: clamp(0.8rem, 2vw, 0.95rem);
+    .pi svg {
+      width: 52%;
+      height: 52%;
+      stroke: var(--deep);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-    tbody th {
+    .pi span {
       font-weight: 700;
-      color: var(--ink);
-      font-size: clamp(0.85rem, 2.2vw, 1rem);
+      font-size: 0.92rem;
       line-height: 1.35;
     }
+    .pi small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
 
-    /* Mobile Breakpoint Tuning (< 540px) */
-    @media (max-width: 540px) {
-      .table-wrap {
-        border-radius: 16px;
-      }
-      table {
-        min-width: 0;
-        width: 100%;
-        table-layout: fixed;
-      }
-      th, td {
-        padding: 10px 6px;
-        font-size: 0.82rem;
-      }
-      tbody th {
-        font-size: 0.82rem;
-      }
-      td.us {
-        font-size: 0.82rem;
-        padding-inline: 4px;
-      }
-      td.them {
-        font-size: 0.78rem;
-        padding-inline: 4px;
-      }
-      thead th.us {
-        font-size: 1.15rem;
-      }
+    .essentials-gallery {
+      background: var(--card);
+      border: 1.5px dashed var(--line);
+      border-radius: 26px;
+      padding: clamp(14px, 3vw, 24px);
+    }
+    .gallery-main {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1.5px solid var(--line);
+      background: var(--petal);
+    }
+    .gallery-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .gallery-slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .gallery-slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 20px;
+      background: linear-gradient(0deg, rgba(75, 18, 48, 0.85) 0%, transparent 100%);
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .gallery-slide-caption strong {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+    }
+    .gallery-slide-caption span {
+      font-size: 0.88rem;
+      opacity: 0.9;
+    }
+
+    .gallery-thumbs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-top: 14px;
+      padding-bottom: 4px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rose) transparent;
+    }
+    .gallery-thumbs::-webkit-scrollbar { height: 4px; }
+    .gallery-thumbs::-webkit-scrollbar-thumb { background: var(--petal); border-radius: 99px; }
+    .thumb-btn {
+      flex: 0 0 clamp(80px, 22vw, 120px);
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      background: var(--surface);
+      padding: 4px;
+      display: grid;
+      gap: 6px;
+      text-align: center;
+      transition: border-color 0.25s, transform 0.2s;
+    }
+    .thumb-btn.active {
+      border-color: var(--deep);
+      background: var(--petal);
+      transform: translateY(-2px);
+    }
+    .thumb-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .thumb-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .thumb-btn span {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* =========================================================
-       3. RESULTS:
-       - Traits
-       - Interactive Before/After slider
-       - Results/reviews slider (MORE than 3 items, mobile-first)
+       BEST SELLERS SECTION (Scrolls Horizontally)
+       ========================================================= */
+    .cards-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 14px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rose) transparent;
+    }
+    .cards-scroll::-webkit-scrollbar { height: 4px; }
+    .cards-scroll::-webkit-scrollbar-thumb { background: var(--petal); border-radius: 99px; }
+    .product-card {
+      flex: 0 0 clamp(220px, 62vw, 260px);
+      scroll-snap-align: start;
+      background: var(--card);
+      border: 1.5px solid var(--line);
+      border-radius: 22px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+      gap: 10px;
+    }
+    .product-card .card-img {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .product-card .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .product-card .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+    .product-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .product-card .price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--deep);
+    }
+    .product-card .price small {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-right: 6px;
+    }
+    .product-card .btn {
+      margin-top: auto;
+      padding: 8px 16px;
+      font-size: 0.88rem;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* =========================================================
+       RESULTS (Traits, Before/After, and Reviews scroll horizontally)
        ========================================================= */
     .traits {
       display: flex;
@@ -430,7 +506,6 @@
       stroke-linejoin: round;
     }
 
-    /* Before / After split slider */
     .ba {
       --p: 50%;
       position: relative;
@@ -501,7 +576,7 @@
     }
     .ba:focus-within { outline: 3px solid var(--rose); outline-offset: 3px; }
 
-    /* Results / voices slider (> 3 items, mobile-first horizontal swipe) */
+    /* Review cards: scroll horizontally across all screen sizes */
     .voices-wrap {
       margin-top: clamp(28px, 5vw, 44px);
     }
@@ -518,7 +593,7 @@
     .voices::-webkit-scrollbar { height: 4px; }
     .voices::-webkit-scrollbar-thumb { background: var(--petal); border-radius: 99px; }
     .voice {
-      flex: 0 0 clamp(230px, 68vw, 290px);
+      flex: 0 0 clamp(240px, 70vw, 300px);
       scroll-snap-align: start;
       background: var(--card);
       border: 1.5px dashed var(--line);
@@ -547,21 +622,8 @@
     .voice-text { font-size: 0.88rem; color: var(--ink); line-height: 1.55; }
     .note { text-align: center; color: var(--muted); font-size: 0.88rem; margin-top: 14px; }
 
-    @media (min-width: 900px) {
-      .voices {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        overflow-x: visible;
-      }
-      .voice { flex: auto; }
-    }
-
     /* =========================================================
-       4. SHOP BY CATEGORY:
-       - Organized in a circle
-       - Brand name in the middle
-       - Names under the images
-       - NOT like a telephone, doesn't behave like one!
+       SHOP BY CATEGORY (Circle)
        ========================================================= */
     .circle-stage {
       --size: min(92vw, 450px);
@@ -574,7 +636,6 @@
       margin-block: 16px;
       direction: ltr;
     }
-    /* Brand in the center */
     .hub-center {
       position: absolute;
       left: 50%;
@@ -595,14 +656,13 @@
     .hub-center .mark {
       font-size: clamp(1.3rem, 4.5vw, 1.85rem);
       line-height: 1.1;
-      color: var(--ink);
+      color: var(--deep);
     }
     .hub-center small {
       font-size: clamp(0.68rem, 2vw, 0.8rem);
       color: var(--muted);
       margin-top: 2px;
     }
-    /* Category items organized in a circle */
     .cat-item {
       position: absolute;
       left: 50%;
@@ -646,182 +706,129 @@
     }
 
     /* =========================================================
-       5. PRODUCT ICONS ("Our Essentials" + Image Switcher under it)
-       - Icons grid
-       - One image, under it images too, switches every few seconds
+       SWAPPED: "WHY BELLÉNA" (Swapped with "Our Essentials")
        ========================================================= */
-    .picons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 22px 14px;
-      margin-bottom: clamp(32px, 5vw, 54px);
-    }
-    .pi {
-      width: calc(33.333% - 10px);
-      display: grid;
-      justify-items: center;
-      gap: 8px;
-      text-align: center;
-    }
-    @media (min-width: 680px) {
-      .pi { width: calc(20% - 15px); min-width: 96px; }
-    }
-    .pi .disc {
-      width: clamp(70px, 12vw, 98px);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--surface);
+    .table-wrap {
+      border-radius: 22px;
       border: 1.5px solid var(--line);
-      display: grid;
-      place-items: center;
-      transition: transform 0.25s, background 0.25s;
+      background: var(--card);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 4px 20px rgba(75, 18, 48, 0.05);
     }
-    .pi:hover .disc {
-      transform: translateY(-4px);
-      background: var(--petal);
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      table-layout: fixed;
+      text-align: start;
     }
-    .pi svg {
-      width: 52%;
-      height: 52%;
-      stroke: var(--deep);
-      fill: none;
-      stroke-width: 1.7;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    th, td {
+      padding: clamp(10px, 2.4vw, 16px) clamp(8px, 2vw, 18px);
+      text-align: start;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+      word-break: normal;
     }
-    .pi span {
-      font-weight: 700;
-      font-size: 0.92rem;
-      line-height: 1.35;
+    tr:last-child td, tr:last-child th { border-bottom: 0; }
+    thead th {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+      color: var(--muted);
+      font-weight: 600;
     }
-    .pi small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.74rem;
+    thead th.col-feature {
+      width: 40%;
+    }
+    thead th.us {
+      background: var(--deep);
+      color: var(--on-deep);
+      font-family: var(--font-latin);
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 1.55rem);
+      direction: ltr;
+      text-align: center;
+      width: 34%;
+    }
+    thead th.col-them {
+      text-align: center;
+      width: 26%;
       color: var(--muted);
     }
-
-    /* Under Our Essentials: One image, under it images too, auto-switches */
-    .essentials-gallery {
-      background: var(--card);
-      border: 1.5px dashed var(--line);
-      border-radius: 26px;
-      padding: clamp(14px, 3vw, 24px);
-    }
-    .gallery-main {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1.5px solid var(--line);
+    td.us {
       background: var(--petal);
+      text-align: center;
+      font-weight: 700;
+      color: var(--ink);
+      font-size: clamp(0.85rem, 2.2vw, 1rem);
     }
-    .gallery-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+    td.them {
+      color: var(--muted);
+      text-align: center;
+      font-size: clamp(0.8rem, 2vw, 0.95rem);
     }
-    .gallery-slide.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .gallery-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .gallery-slide-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 16px 20px;
-      background: linear-gradient(0deg, rgba(75, 18, 48, 0.85) 0%, transparent 100%);
-      color: #FFFFFF;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .gallery-slide-caption strong {
-      font-family: var(--font-display);
-      font-size: clamp(1.2rem, 3.5vw, 1.7rem);
-    }
-    .gallery-slide-caption span {
-      font-size: 0.88rem;
-      opacity: 0.9;
+    tbody th {
+      font-weight: 700;
+      color: var(--ink);
+      font-size: clamp(0.85rem, 2.2vw, 1rem);
+      line-height: 1.35;
     }
 
-    /* Thumbnails under it */
-    .gallery-thumbs {
+    @media (max-width: 540px) {
+      .table-wrap {
+        border-radius: 16px;
+      }
+      table {
+        min-width: 0;
+        width: 100%;
+        table-layout: fixed;
+      }
+      th, td {
+        padding: 10px 6px;
+        font-size: 0.82rem;
+      }
+      tbody th {
+        font-size: 0.82rem;
+      }
+      td.us {
+        font-size: 0.82rem;
+        padding-inline: 4px;
+      }
+      td.them {
+        font-size: 0.78rem;
+        padding-inline: 4px;
+      }
+      thead th.us {
+        font-size: 1.15rem;
+      }
+    }
+
+    /* =========================================================
+       HOW TO USE: Slider where ONE video covers the section, scroll sideways
+       ========================================================= */
+    .reel {
       display: flex;
-      gap: 10px;
+      gap: 16px;
       overflow-x: auto;
-      padding-top: 14px;
-      padding-bottom: 4px;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 12px;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: var(--rose) transparent;
     }
-    .gallery-thumbs::-webkit-scrollbar { height: 4px; }
-    .gallery-thumbs::-webkit-scrollbar-thumb { background: var(--petal); border-radius: 99px; }
-    .thumb-btn {
-      flex: 0 0 clamp(80px, 22vw, 120px);
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid transparent;
-      background: var(--surface);
-      padding: 4px;
-      display: grid;
-      gap: 6px;
-      text-align: center;
-      transition: border-color 0.25s, transform 0.2s;
-    }
-    .thumb-btn.active {
-      border-color: var(--deep);
-      background: var(--petal);
-      transform: translateY(-2px);
-    }
-    .thumb-img {
+    .reel::-webkit-scrollbar { height: 4px; }
+    .reel::-webkit-scrollbar-thumb { background: var(--petal); border-radius: 99px; }
+    .vid {
+      flex: 0 0 100%;
       width: 100%;
-      aspect-ratio: 4 / 3;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .thumb-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .thumb-btn span {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.25;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* =========================================================
-       6. HOW TO USE VIDEOS:
-       ========================================================= */
-    .reel {
+      scroll-snap-align: center;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 12px;
     }
-    @media (min-width: 768px) {
-      .reel { grid-template-columns: repeat(4, 1fr); gap: 18px; }
-    }
-    .vid { display: grid; gap: 10px; }
     .screen {
-      aspect-ratio: 9 / 14;
+      width: 100%;
+      max-width: 760px;
+      margin-inline: auto;
+      aspect-ratio: 16 / 9;
       border-radius: 22px;
       background: linear-gradient(170deg, var(--petal), var(--rose) 140%);
       position: relative;
@@ -829,6 +836,11 @@
       place-items: center;
       overflow: hidden;
       border: 1.5px solid var(--line);
+    }
+    @media (max-width: 540px) {
+      .screen {
+        aspect-ratio: 4 / 3;
+      }
     }
     .screen img {
       position: absolute;
@@ -841,31 +853,31 @@
     .play {
       position: relative;
       z-index: 2;
-      width: 52px;
-      height: 52px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       background: var(--bg);
       border: 0;
       display: grid;
       place-items: center;
-      box-shadow: 0 4px 12px rgba(75, 18, 48, 0.25);
+      box-shadow: 0 4px 14px rgba(75, 18, 48, 0.25);
     }
-    .play svg { width: 20px; height: 20px; fill: var(--deep); margin-left: 3px; }
+    .play svg { width: 22px; height: 22px; fill: var(--deep); margin-left: 3px; }
     .screen small {
       position: absolute;
-      bottom: 12px;
+      bottom: 14px;
       left: 0;
       right: 0;
       text-align: center;
       color: var(--ink);
-      font-size: 0.78rem;
+      font-size: 0.85rem;
       font-weight: 600;
       z-index: 2;
     }
-    .vid h3 { font-size: 0.98rem; font-weight: 700; text-align: center; }
+    .vid h3 { font-size: 1.15rem; font-weight: 700; text-align: center; }
 
     /* =========================================================
-       7. FAQ AND CONTACT:
+       FAQ AND CONTACT
        ========================================================= */
     .split {
       display: grid;
@@ -935,12 +947,14 @@
       font-size: 0.9rem;
       border-top: 1px solid var(--line);
     }
-    footer .mark { font-size: 2.2rem; display: block; margin-bottom: 4px; color: var(--ink); }
+    footer .mark { font-size: 2.2rem; display: block; margin-bottom: 4px; color: var(--deep); }
   </style>
 </head>
 <body>
 
-<!-- TOP BAR (High contrast & crystal-clear luxury aesthetic) -->
+<!-- TOP BAR:
+     - Logo on the LEFT side (direction: ltr)
+     - Logo color is DARK PINK (#A82D5A), not black -->
 <header class="top">
   <div class="wrap">
     <a href="#hero" class="mark" title="Belléna">Belléna</a>
@@ -952,9 +966,7 @@
 </header>
 
 <!-- =========================================================
-     1. HERO:
-     - Image is the background, taking the whole hero section
-     - Brand name on the image top middle
+     1. HERO
      ========================================================= -->
 <section class="hero" id="hero" aria-label="الواجهة الرئيسية">
   <div class="hero-brand-wrap">
@@ -964,8 +976,7 @@
 </section>
 
 <!-- =========================================================
-     BRAND SLOGAN:
-     - Only one line, tall section length
+     BRAND SLOGAN
      ========================================================= -->
 <section class="band brand-slogan-section" id="about">
   <div class="wrap">
@@ -976,44 +987,197 @@
 </section>
 
 <!-- =========================================================
-     2. COMPARISON TABLE:
-     - Designed to fit the mobile breakpoint without cutoffs or overflow
+     SWAPPED SECTION 1: "OUR ESSENTIALS" (Swapped with "Why Belléna")
      ========================================================= -->
-<section class="band tint" id="comparison">
+<section class="band tint" id="essentials">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow">Why Belléna</span>
-      <h2>لماذا Belléna؟</h2>
+      <span class="eyebrow">Our Essentials</span>
+      <h2>أسرار الجمال المغربي</h2>
     </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th scope="col" class="col-feature">الميزة</th>
-            <th scope="col" class="us">Belléna</th>
-            <th scope="col" class="col-them">متاجر أخرى</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">أصل المنتجات</th><td class="us">مغربي طبيعي</td><td class="them">غير محدد غالباً</td></tr>
-          <tr><th scope="row">منتجات غير متوفرة محلياً</th><td class="us">&#10003; حصرية</td><td class="them">نادراً</td></tr>
-          <tr><th scope="row">فيديو شرح لكل منتج</th><td class="us">&#10003; نعم</td><td class="them">&#8211;</td></tr>
-          <tr><th scope="row">نتائج وآراء بالصور</th><td class="us">&#10003; موثقة</td><td class="them">&#8211;</td></tr>
-          <tr><th scope="row">التوصيل</th><td class="us">لكل البلاد</td><td class="them">يختلف</td></tr>
-          <tr><th scope="row">الاستبدال</th><td class="us">&#10003; متوفر</td><td class="them">يختلف</td></tr>
-        </tbody>
-      </table>
+
+    <!-- Product Icons -->
+    <div class="picons">
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><rect x="8" y="17" width="32" height="18" rx="7"/><circle cx="16" cy="10" r="2.5"/><circle cx="26" cy="8" r="1.8"/><circle cx="33" cy="12" r="2.2"/></svg></div><span>صابون أسود مغربي</span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M6 38c4-12 10-20 18-20s14 8 18 20z"/><circle cx="24" cy="10" r="1.6"/><circle cx="17" cy="12" r="1.2"/><circle cx="31" cy="12" r="1.2"/></svg></div><span>النيلة الزرقاء</span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M8 30l6-14 12-6 12 8 4 14-8 8H16z"/><path d="M14 16l8 8 12-6M22 24l-2 14"/></svg></div><span>حجر العكر الفاسي</span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M7 22h34a17 17 0 0 1-34 0z"/><path d="M17 16c-2-3 2-4 0-8M25 16c-2-3 2-4 0-8M33 16c-2-3 2-4 0-8"/></svg></div><span>الدلكة السودانية</span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><rect x="16" y="20" width="16" height="22" rx="5"/><path d="M20 20v-6h8v6M24 14V6"/><path d="M24 27c-3 4-3 7 0 7s3-3 0-7z"/></svg></div><span>زيت السعد</span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M8 22h26v8a13 13 0 0 1-26 0z"/><path d="M34 24h3a4 4 0 0 1 0 8h-4"/><path d="M14 16c-2-3 2-4 0-8M22 16c-2-3 2-4 0-8"/></svg></div><span>شاي الأنوثة</span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><rect x="10" y="14" width="28" height="7" rx="3"/><path d="M12 21v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V21"/></svg></div><span>كريم ترطيب<small>الاسم قيد الاختيار</small></span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M7 20h34v16a6 6 0 0 1-6 6H13a6 6 0 0 1-6-6z"/><path d="M10 20c0-5 6-8 14-8s14 3 14 8"/></svg></div><span>زبدة<small>الاسم قيد الاختيار</small></span></div>
+      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M10 30l6-12 7 10-4 12zM25 38l5-20 8 8-3 12z"/></svg></div><span>أملاح رجلين</span></div>
+    </div>
+
+    <!-- Gallery Switcher -->
+    <div class="essentials-gallery" id="essGallery">
+      <div class="gallery-main">
+        <div class="gallery-slide active">
+          <img src="https://images.unsplash.com/photo-1608248597359-5776d634db4b?auto=format&fit=crop&w=1200&q=80" alt="الصابون الأسود المغربي">
+          <div class="gallery-slide-caption">
+            <strong>الصابون الأسود البلدي المغربي</strong>
+            <span>زيت الزيتون النقي وتقشير عميق</span>
+          </div>
+        </div>
+        <div class="gallery-slide">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80" alt="النيلة الزرقاء">
+          <div class="gallery-slide-caption">
+            <strong>النيلة الزرقاء الصحراوية</strong>
+            <span>سر التفتيح وتوحيد لون البشرة</span>
+          </div>
+        </div>
+        <div class="gallery-slide">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80" alt="حجر العكر الفاسي">
+          <div class="gallery-slide-caption">
+            <strong>حجر العكر الفاسي الأصلي</strong>
+            <span>توريد طبيعي للشفاه والوجنتين</span>
+          </div>
+        </div>
+        <div class="gallery-slide">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80" alt="الدلكة السودانية">
+          <div class="gallery-slide-caption">
+            <strong>الدلكة العشبية الملكية</strong>
+            <span>تنقية المسام وعطر أنثوي يدوم</span>
+          </div>
+        </div>
+        <div class="gallery-slide">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1200&q=80" alt="زيت السعد">
+          <div class="gallery-slide-caption">
+            <strong>زيت السعد المركز</strong>
+            <span>تخفيف نمو الشعر ونعومة فائقة</span>
+          </div>
+        </div>
+        <div class="gallery-slide">
+          <img src="https://images.unsplash.com/photo-1556228722-d0b5de75d774?auto=format&fit=crop&w=1200&q=80" alt="كريم وزبدة ترطيب">
+          <div class="gallery-slide-caption">
+            <strong>كريم وزبدة الترطيب</strong>
+            <span>ترطيب عميق وحماية للبشرة</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="gallery-thumbs" id="galleryThumbs">
+        <button class="thumb-btn active" type="button" data-idx="0">
+          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1608248597359-5776d634db4b?auto=format&fit=crop&w=240&q=80" alt="صابون مغربي"></div>
+          <span>صابون مغربي</span>
+        </button>
+        <button class="thumb-btn" type="button" data-idx="1">
+          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=240&q=80" alt="نيلة زرقاء"></div>
+          <span>نيلة زرقاء</span>
+        </button>
+        <button class="thumb-btn" type="button" data-idx="2">
+          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=240&q=80" alt="عكر فاسي"></div>
+          <span>عكر فاسي</span>
+        </button>
+        <button class="thumb-btn" type="button" data-idx="3">
+          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=240&q=80" alt="دلكة"></div>
+          <span>دلكة</span>
+        </button>
+        <button class="thumb-btn" type="button" data-idx="4">
+          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=240&q=80" alt="زيت السعد"></div>
+          <span>زيت السعد</span>
+        </button>
+        <button class="thumb-btn" type="button" data-idx="5">
+          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=240&q=80" alt="كريم وزبدة"></div>
+          <span>كريم وزبدة</span>
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- =========================================================
-     3. RESULTS:
-     - Traits
-     - Before / After slider
-     - More than 3 results (mobile-first horizontal slider)
+     BEST SELLERS SECTION (Cards scroll horizontally)
      ========================================================= -->
-<section class="band" id="results">
+<section class="band" id="bestsellers">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Best Sellers</span>
+      <h2>الأكثر مبيعاً</h2>
+      <p>المنتجات الأكثر طلباً من زبوناتنا لروتين العناية والجمال المغربي.</p>
+    </div>
+
+    <div class="cards-scroll">
+      <!-- 1 -->
+      <div class="product-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80" alt="النيلة الزرقاء المغربية الأصلية">
+        </div>
+        <div class="card-body">
+          <h3>النيلة الزرقاء الصحراوية الحرة</h3>
+          <div class="price">65 ₪ <small>85 ₪</small></div>
+          <a class="btn" href="#talk">أضيفي للسلة</a>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="product-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1608248597359-5776d634db4b?auto=format&fit=crop&w=400&q=80" alt="الصابون الأسود البلدي">
+        </div>
+        <div class="card-body">
+          <h3>الصابون الأسود البلدي + ليفة كيس</h3>
+          <div class="price">55 ₪ <small>70 ₪</small></div>
+          <a class="btn" href="#talk">أضيفي للسلة</a>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="product-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80" alt="حجر العكر الفاسي الأصلي">
+        </div>
+        <div class="card-body">
+          <h3>حجر العكر الفاسي الفاسي الحر</h3>
+          <div class="price">75 ₪ <small>95 ₪</small></div>
+          <a class="btn" href="#talk">أضيفي للسلة</a>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="product-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=80" alt="زيت السعد المركز">
+        </div>
+        <div class="card-body">
+          <h3>زيت السعد المركز لتأخير نمو الشعر</h3>
+          <div class="price">80 ₪ <small>105 ₪</small></div>
+          <a class="btn" href="#talk">أضيفي للسلة</a>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="product-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&q=80" alt="الدلكة السودانية">
+        </div>
+        <div class="card-body">
+          <h3>الدلكة السودانية العشبية الملكية</h3>
+          <div class="price">70 ₪ <small>90 ₪</small></div>
+          <a class="btn" href="#talk">أضيفي للسلة</a>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="product-card">
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1556228722-d0b5de75d774?auto=format&fit=crop&w=400&q=80" alt="كريم وزبدة الترطيب">
+        </div>
+        <div class="card-body">
+          <h3>كريم وزبدة الترطيب الفاخر للجسم</h3>
+          <div class="price">85 ₪ <small>110 ₪</small></div>
+          <a class="btn" href="#talk">أضيفي للسلة</a>
+        </div>
+      </div>
+    </div>
+    <p class="note">مرري أفقياً لمشاهدة جميع المنتجات</p>
+  </div>
+</section>
+
+<!-- =========================================================
+     3. RESULTS (Reviews cards scroll horizontally)
+     ========================================================= -->
+<section class="band tint" id="results">
   <div class="wrap">
     <div class="head">
       <span class="eyebrow">Real Results</span>
@@ -1043,7 +1207,7 @@
       <input type="range" id="baRange" min="0" max="100" value="50" aria-label="حرّكي للمقارنة بين قبل وبعد">
     </div>
 
-    <!-- More than 3 results (swipeable cards on mobile, grid on desktop) -->
+    <!-- Review cards (horizontal swipe across all screen sizes) -->
     <div class="voices-wrap" aria-label="آراء وتجارب الزبونات">
       <div class="voices">
         <!-- 1 -->
@@ -1130,13 +1294,9 @@
 </section>
 
 <!-- =========================================================
-     4. SHOP BY CATEGORY:
-     - Organized in a circle
-     - Brand name in the middle
-     - Names under the images
-     - NOT like a telephone, doesn't behave like one!
+     4. SHOP BY CATEGORY
      ========================================================= -->
-<section class="band tint" id="categories">
+<section class="band" id="categories">
   <div class="wrap">
     <div class="head">
       <span class="eyebrow">Shop By Category</span>
@@ -1145,55 +1305,46 @@
     </div>
 
     <div class="circle-stage">
-      <!-- Center Brand Name -->
       <div class="hub-center">
         <span class="mark">Belléna</span>
         <small>8 أقسام للعناية</small>
       </div>
 
-      <!-- Category 1 (0deg - Top) -->
       <div class="cat-item" style="--a: 0deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=160&q=80" alt="عناية بالجسم"></div>
         <span class="cat-name">عناية بالجسم</span>
       </div>
 
-      <!-- Category 2 (45deg) -->
       <div class="cat-item" style="--a: 45deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=160&q=80" alt="عناية بالبشرة"></div>
         <span class="cat-name">عناية بالبشرة</span>
       </div>
 
-      <!-- Category 3 (90deg - Right) -->
       <div class="cat-item" style="--a: 90deg;">
-        <div class="cat-pic"><img src="https://images.unsplash.com/photo-1556228722-d0b5de75d774?auto=format&fit=crop&w=160&q=80" alt="كريمات ترطيب"></div>
+        <div class="cat-pic"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=160&q=80" alt="كريمات ترطيب"></div>
         <span class="cat-name">كريمات ترطيب</span>
       </div>
 
-      <!-- Category 4 (135deg) -->
       <div class="cat-item" style="--a: 135deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=160&q=80" alt="عطور"></div>
         <span class="cat-name">عطور</span>
       </div>
 
-      <!-- Category 5 (180deg - Bottom) -->
       <div class="cat-item" style="--a: 180deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=160&q=80" alt="عطور شعر"></div>
         <span class="cat-name">عطور شعر</span>
       </div>
 
-      <!-- Category 6 (225deg) -->
       <div class="cat-item" style="--a: 225deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=160&q=80" alt="مستلزمات شعر"></div>
         <span class="cat-name">مستلزمات شعر</span>
       </div>
 
-      <!-- Category 7 (270deg - Left) -->
       <div class="cat-item" style="--a: 270deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=160&q=80" alt="مستلزمات القدم"></div>
         <span class="cat-name">مستلزمات القدم</span>
       </div>
 
-      <!-- Category 8 (315deg) -->
       <div class="cat-item" style="--a: 315deg;">
         <div class="cat-pic"><img src="https://images.unsplash.com/photo-1602928321679-560bb453f190?auto=format&fit=crop&w=160&q=80" alt="اكسسوارات"></div>
         <span class="cat-name">اكسسوارات</span>
@@ -1203,119 +1354,40 @@
 </section>
 
 <!-- =========================================================
-     5. PRODUCT ICONS ("Our Essentials" + Image Switcher under it):
-     - Icons grid
-     - One image, under it images too, switches every few seconds
+     SWAPPED: "WHY BELLÉNA" (Swapped with "Our Essentials")
      ========================================================= -->
-<section class="band" id="essentials">
+<section class="band tint" id="comparison">
   <div class="wrap">
     <div class="head">
-      <span class="eyebrow">Our Essentials</span>
-      <h2>أسرار الجمال المغربي</h2>
+      <span class="eyebrow">Why Belléna</span>
+      <h2>لماذا Belléna؟</h2>
     </div>
-
-    <!-- Product Icons -->
-    <div class="picons">
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><rect x="8" y="17" width="32" height="18" rx="7"/><circle cx="16" cy="10" r="2.5"/><circle cx="26" cy="8" r="1.8"/><circle cx="33" cy="12" r="2.2"/></svg></div><span>صابون أسود مغربي</span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M6 38c4-12 10-20 18-20s14 8 18 20z"/><circle cx="24" cy="10" r="1.6"/><circle cx="17" cy="12" r="1.2"/><circle cx="31" cy="12" r="1.2"/></svg></div><span>النيلة الزرقاء</span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M8 30l6-14 12-6 12 8 4 14-8 8H16z"/><path d="M14 16l8 8 12-6M22 24l-2 14"/></svg></div><span>حجر العكر الفاسي</span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M7 22h34a17 17 0 0 1-34 0z"/><path d="M17 16c-2-3 2-4 0-8M25 16c-2-3 2-4 0-8M33 16c-2-3 2-4 0-8"/></svg></div><span>الدلكة السودانية</span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><rect x="16" y="20" width="16" height="22" rx="5"/><path d="M20 20v-6h8v6M24 14V6"/><path d="M24 27c-3 4-3 7 0 7s3-3 0-7z"/></svg></div><span>زيت السعد</span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M8 22h26v8a13 13 0 0 1-26 0z"/><path d="M34 24h3a4 4 0 0 1 0 8h-4"/><path d="M14 16c-2-3 2-4 0-8M22 16c-2-3 2-4 0-8"/></svg></div><span>شاي الأنوثة</span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><rect x="10" y="14" width="28" height="7" rx="3"/><path d="M12 21v14a5 5 0 0 0 5 5h14a5 5 0 0 0 5-5V21"/></svg></div><span>كريم ترطيب<small>الاسم قيد الاختيار</small></span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M7 20h34v16a6 6 0 0 1-6 6H13a6 6 0 0 1-6-6z"/><path d="M10 20c0-5 6-8 14-8s14 3 14 8"/></svg></div><span>زبدة<small>الاسم قيد الاختيار</small></span></div>
-      <div class="pi"><div class="disc"><svg viewBox="0 0 48 48"><path d="M10 30l6-12 7 10-4 12zM25 38l5-20 8 8-3 12z"/></svg></div><span>أملاح رجلين</span></div>
-    </div>
-
-    <!-- Under Our Essentials: One image, under it images too, every few seconds switches -->
-    <div class="essentials-gallery" id="essGallery">
-      <!-- One Main Image -->
-      <div class="gallery-main">
-        <!-- 0 -->
-        <div class="gallery-slide active">
-          <img src="https://images.unsplash.com/photo-1608248597359-5776d634db4b?auto=format&fit=crop&w=1200&q=80" alt="الصابون الأسود المغربي">
-          <div class="gallery-slide-caption">
-            <strong>الصابون الأسود البلدي المغربي</strong>
-            <span>زيت الزيتون النقي وتقشير عميق</span>
-          </div>
-        </div>
-        <!-- 1 -->
-        <div class="gallery-slide">
-          <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80" alt="النيلة الزرقاء">
-          <div class="gallery-slide-caption">
-            <strong>النيلة الزرقاء الصحراوية</strong>
-            <span>سر التفتيح وتوحيد لون البشرة</span>
-          </div>
-        </div>
-        <!-- 2 -->
-        <div class="gallery-slide">
-          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=1200&q=80" alt="حجر العكر الفاسي">
-          <div class="gallery-slide-caption">
-            <strong>حجر العكر الفاسي الأصلي</strong>
-            <span>توريد طبيعي للشفاه والوجنتين</span>
-          </div>
-        </div>
-        <!-- 3 -->
-        <div class="gallery-slide">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80" alt="الدلكة السودانية">
-          <div class="gallery-slide-caption">
-            <strong>الدلكة العشبية الملكية</strong>
-            <span>تنقية المسام وعطر أنثوي يدوم</span>
-          </div>
-        </div>
-        <!-- 4 -->
-        <div class="gallery-slide">
-          <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=1200&q=80" alt="زيت السعد">
-          <div class="gallery-slide-caption">
-            <strong>زيت السعد المركز</strong>
-            <span>تخفيف نمو الشعر ونعومة فائقة</span>
-          </div>
-        </div>
-        <!-- 5 -->
-        <div class="gallery-slide">
-          <img src="https://images.unsplash.com/photo-1556228722-d0b5de75d774?auto=format&fit=crop&w=1200&q=80" alt="كريم وزبدة ترطيب">
-          <div class="gallery-slide-caption">
-            <strong>كريم وزبدة الترطيب</strong>
-            <span>ترطيب عميق وحماية للبشرة</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Under it: Images too (Thumbnails) -->
-      <div class="gallery-thumbs" id="galleryThumbs">
-        <button class="thumb-btn active" type="button" data-idx="0">
-          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1608248597359-5776d634db4b?auto=format&fit=crop&w=240&q=80" alt="صابون مغربي"></div>
-          <span>صابون مغربي</span>
-        </button>
-        <button class="thumb-btn" type="button" data-idx="1">
-          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=240&q=80" alt="نيلة زرقاء"></div>
-          <span>نيلة زرقاء</span>
-        </button>
-        <button class="thumb-btn" type="button" data-idx="2">
-          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=240&q=80" alt="عكر فاسي"></div>
-          <span>عكر فاسي</span>
-        </button>
-        <button class="thumb-btn" type="button" data-idx="3">
-          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=240&q=80" alt="دلكة"></div>
-          <span>دلكة</span>
-        </button>
-        <button class="thumb-btn" type="button" data-idx="4">
-          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=240&q=80" alt="زيت السعد"></div>
-          <span>زيت السعد</span>
-        </button>
-        <button class="thumb-btn" type="button" data-idx="5">
-          <div class="thumb-img"><img src="https://images.unsplash.com/photo-1556228722-d0b5de75d774?auto=format&fit=crop&w=240&q=80" alt="كريم وزبدة"></div>
-          <span>كريم وزبدة</span>
-        </button>
-      </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col" class="col-feature">الميزة</th>
+            <th scope="col" class="us">Belléna</th>
+            <th scope="col" class="col-them">متاجر أخرى</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">أصل المنتجات</th><td class="us">مغربي طبيعي</td><td class="them">غير محدد غالباً</td></tr>
+          <tr><th scope="row">منتجات غير متوفرة محلياً</th><td class="us">&#10003; حصرية</td><td class="them">نادراً</td></tr>
+          <tr><th scope="row">فيديو شرح لكل منتج</th><td class="us">&#10003; نعم</td><td class="them">&#8211;</td></tr>
+          <tr><th scope="row">نتائج وآراء بالصور</th><td class="us">&#10003; موثقة</td><td class="them">&#8211;</td></tr>
+          <tr><th scope="row">التوصيل</th><td class="us">لكل البلاد</td><td class="them">يختلف</td></tr>
+          <tr><th scope="row">الاستبدال</th><td class="us">&#10003; متوفر</td><td class="them">يختلف</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
 <!-- =========================================================
-     6. HOW TO USE VIDEOS:
+     HOW TO USE (Slider where one video covers section, scroll sideways)
      ========================================================= -->
-<section class="band tint" id="how-to">
+<section class="band" id="how-to">
   <div class="wrap">
     <div class="head">
       <span class="eyebrow">How To Use</span>
@@ -1323,18 +1395,43 @@
       <p>فيديوهات قصيرة تشرح الاستعمال خطوة بخطوة.</p>
     </div>
     <div class="reel">
-      <div class="vid"><div class="screen"><button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button><small>الفيديو قيد التجهيز</small></div><h3>الصابون الأسود المغربي</h3></div>
-      <div class="vid"><div class="screen"><button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button><small>الفيديو قيد التجهيز</small></div><h3>النيلة الزرقاء</h3></div>
-      <div class="vid"><div class="screen"><button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button><small>الفيديو قيد التجهيز</small></div><h3>حجر العكر الفاسي</h3></div>
-      <div class="vid"><div class="screen"><button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button><small>الفيديو قيد التجهيز</small></div><h3>الدلكة السودانية</h3></div>
+      <div class="vid">
+        <div class="screen">
+          <button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button>
+          <small>الفيديو قيد التجهيز</small>
+        </div>
+        <h3>الصابون الأسود المغربي</h3>
+      </div>
+      <div class="vid">
+        <div class="screen">
+          <button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button>
+          <small>الفيديو قيد التجهيز</small>
+        </div>
+        <h3>النيلة الزرقاء</h3>
+      </div>
+      <div class="vid">
+        <div class="screen">
+          <button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button>
+          <small>الفيديو قيد التجهيز</small>
+        </div>
+        <h3>حجر العكر الفاسي</h3>
+      </div>
+      <div class="vid">
+        <div class="screen">
+          <button class="play" type="button" aria-label="تشغيل الفيديو"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></button>
+          <small>الفيديو قيد التجهيز</small>
+        </div>
+        <h3>الدلكة السودانية</h3>
+      </div>
     </div>
+    <p class="note">مرري أفقياً لمشاهدة بقية الفيديوهات</p>
   </div>
 </section>
 
 <!-- =========================================================
-     7. FAQ AND CONTACT:
+     FAQ AND CONTACT
      ========================================================= -->
-<section class="band" id="talk">
+<section class="band tint" id="talk">
   <div class="wrap split">
     <div>
       <div class="head" style="text-align:start;justify-items:start">
